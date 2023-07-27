@@ -1,8 +1,9 @@
 # observer
-// TODO(user): Add simple overview of use/purpose
+The Observer is a controller that injects an eBPF implemented collector into Golang-based applications. And create a jaeger, let the data in the collector report to jaeger.
 
-## Description
-// TODO(user): An in-depth paragraph about your project and overview of use
+## Architecture
+
+![observer](images/observer.png)
 
 ## Getting Started
 You’ll need a Kubernetes cluster to run against. You can use [KIND](https://sigs.k8s.io/kind) to get a local cluster for testing, or run against a remote cluster.
@@ -42,7 +43,12 @@ make undeploy
 ```
 
 ## Contributing
-// TODO(user): Add detailed information on how you would like others to contribute to this project
+
+<a href="https://github.com/Fish-pro/observer/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Fish-pro/observer" />
+</a>
+
+Made with [contrib.rocks](https://contrib.rocks).
 
 ### How it works
 This project aims to follow the Kubernetes [Operator pattern](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/).
