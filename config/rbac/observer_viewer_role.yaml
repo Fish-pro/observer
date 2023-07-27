@@ -1,0 +1,27 @@
+# permissions for end users to view observers.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: observer-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: observer
+    app.kubernetes.io/part-of: observer
+    app.kubernetes.io/managed-by: kustomize
+  name: observer-viewer-role
+rules:
+- apiGroups:
+  - ob.observer.io
+  resources:
+  - observers
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - ob.observer.io
+  resources:
+  - observers/status
+  verbs:
+  - get

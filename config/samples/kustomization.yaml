@@ -1,0 +1,4 @@
+## Append samples of your project ##
+resources:
+- ob_v1alpha1_observer.yaml
+#+kubebuilder:scaffold:manifestskustomizesamples
