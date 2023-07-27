@@ -134,7 +134,7 @@ type Agent struct {
 	// Endpoint define the report target
 	// it is jaeger component endpoint by default
 	// +kubebuilder:validation:Optional
-	Endpoint string `json:"Endpoint,omitempty"`
+	Endpoint string `json:"endpoint,omitempty"`
 }
 
 // ObserverSpec defines the desired state of Observer

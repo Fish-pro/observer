@@ -79,13 +79,13 @@ func (r *ObserverReconciler) Reconcile(ctx context.Context, req ctrl.Request) (c
 	observer := obj.DeepCopy()
 
 	if !observer.DeletionTimestamp.IsZero() {
-		return r.cleanObserver(ctx, observer)
+		return r.cleanResourcesForObserver(ctx, observer)
 	}
 
 	return r.syncObserver(ctx, observer)
 }
 
-func (r *ObserverReconciler) cleanObserver(ctx context.Context, observer *observerv1alpha1.Observer) (ctrl.Result, error) {
+func (r *ObserverReconciler) cleanResourcesForObserver(ctx context.Context, observer *observerv1alpha1.Observer) (ctrl.Result, error) {
 	if observer.Spec.Jaeger == nil {
 		return ctrl.Result{}, nil
 	}
