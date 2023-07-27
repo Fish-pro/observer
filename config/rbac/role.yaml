@@ -5,7 +5,43 @@ metadata:
   name: manager-role
 rules:
 - apiGroups:
-  - observer.io.observer.io
+  - ""
+  resources:
+  - deployments
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - services
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - statefulsets
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ob.observer.io
   resources:
   - observers
   verbs:
@@ -17,13 +53,13 @@ rules:
   - update
   - watch
 - apiGroups:
-  - observer.io.observer.io
+  - ob.observer.io
   resources:
   - observers/finalizers
   verbs:
   - update
 - apiGroups:
-  - observer.io.observer.io
+  - ob.observer.io
   resources:
   - observers/status
   verbs:
