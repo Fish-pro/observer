@@ -42,6 +42,10 @@ UnDeploy the controller from the cluster:
 make undeploy
 ```
 
+## Using an Observer
+
+After the Observer is deployed, you can use the Observer by [example](examples/emojivoto/README.md)
+
 ## Contributing
 
 <a href="https://github.com/Fish-pro/observer/graphs/contributors">

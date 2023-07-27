@@ -12,7 +12,7 @@ spec:
     listKind: ObserverList
     plural: observers
     singular: observer
-  scope: Namespace
+  scope: Namespaced
   versions:
   - additionalPrinterColumns:
     - description: Report the puller ready status

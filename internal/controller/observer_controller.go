@@ -277,12 +277,16 @@ func (r *ObserverReconciler) injectStatefulSet(ctx context.Context, observer *ob
 }
 
 func (r *ObserverReconciler) injectPodTemplateSpec(tmpl corev1.PodTemplateSpec, initContainer corev1.Container, agentContainer corev1.Container) (*corev1.PodTemplateSpec, error) {
+	share := true
 	if len(tmpl.Spec.Containers) == 0 {
 		return nil, fmt.Errorf("can not found any containers")
 	}
 	tmpl.Spec.InitContainers = append(tmpl.Spec.InitContainers, initContainer)
 	tmpl.Spec.Containers = append(tmpl.Spec.Containers, agentContainer)
-	tmpl.Spec.Containers[0].Command = append([]string{"/odigos-launcher/launch"}, tmpl.Spec.Containers[0].Command...)
+	tmpl.Spec.ShareProcessNamespace = &share
+	if tmpl.Spec.Containers[0].Command != nil {
+		tmpl.Spec.Containers[0].Command = append([]string{"/odigos-launcher/launch"}, tmpl.Spec.Containers[0].Command...)
+	}
 	tmpl.Spec.Containers[0].VolumeMounts = append(
 		tmpl.Spec.Containers[0].VolumeMounts,
 		corev1.VolumeMount{
@@ -484,6 +488,8 @@ func getInitContainer(launcherConfig *observerv1alpha1.Launcher) corev1.Containe
 }
 
 func getAgentContainer(agentConfig *observerv1alpha1.Agent, name string, existContainer corev1.Container) corev1.Container {
+	privileged := true
+	user := int64(0)
 	return corev1.Container{
 		Name:  InjectContainerName,
 		Image: agentConfig.Image.Name(),
@@ -499,6 +505,21 @@ func getAgentContainer(agentConfig *observerv1alpha1.Agent, name string, existCo
 			{
 				Name:  "OTEL_SERVICE_NAME",
 				Value: name,
+			},
+		},
+		SecurityContext: &corev1.SecurityContext{
+			Capabilities: &corev1.Capabilities{
+				Add: []corev1.Capability{
+					"SYS_PTRACE",
+				},
+			},
+			Privileged: &privileged,
+			RunAsUser:  &user,
+		},
+		VolumeMounts: []corev1.VolumeMount{
+			{
+				Name:      "kernel-debug",
+				MountPath: "/sys/kernel/debug",
 			},
 		},
 	}
