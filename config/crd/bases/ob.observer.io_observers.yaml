@@ -47,7 +47,7 @@ spec:
                 description: Agent define the agent setting it is keyval/otel-go-agent:v0.6.0
                   by default
                 properties:
-                  Endpoint:
+                  endpoint:
                     description: Endpoint define the report target it is jaeger component
                       endpoint by default
                     type: string
