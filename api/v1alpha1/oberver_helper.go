@@ -12,7 +12,7 @@ func (o *Observer) JaegerEndpoint() string {
 	if o.Spec.Jaeger != nil {
 		res = fmt.Sprintf("%s:4317", o.Spec.Jaeger.Name)
 	}
-	if len(o.Spec.Agent.Endpoint) == 0 {
+	if len(o.Spec.Agent.Endpoint) != 0 {
 		res = o.Spec.Agent.Endpoint
 	}
 	return res

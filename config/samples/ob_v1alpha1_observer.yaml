@@ -9,22 +9,4 @@ metadata:
     app.kubernetes.io/created-by: observer
   name: observer-sample
 spec:
-  resourceSelectors:
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: emoji
-  launcher:
-    imageRepository: keyval/launcher
-    imageTag: v0.1
-  agent:
-    imageRepository: keyval/otel-go-agent
-    imageTag: v0.6.0
-    endpoint: ""
-  jaeger:
-    name: jaeger
-    serviceType: NodePort
-    imageRepository: jaegertracing/opentelemetry-all-in-one
-    imageTag: latest
-    replicas: 1
-    labels:
-      app: observer
+  # TODO(user): Add fields here

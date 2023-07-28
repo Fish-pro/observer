@@ -176,7 +176,7 @@ type ObserverStatus struct {
 
 //+kubebuilder:object:root=true
 //+kubebuilder:subresource:status
-//+kubebuilder:resource:scope="Namespace",singular="observer",path="observers"
+//+kubebuilder:resource:scope="Namespaced",singular="observer",path="observers"
 //+kubebuilder:printcolumn:name="Ready",type=string,description="Report the puller ready status",JSONPath=`.status.conditions[?(@.type=="Ready")].status`,priority=0
 //+kubebuilder:printcolumn:name="Age",type=date,description="The creation date",JSONPath=`.metadata.creationTimestamp`,priority=0
 
